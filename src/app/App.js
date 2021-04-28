@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
-import { Footer } from './Footer';
-import { Header } from './Header';
+import Footer from './Footer';
+import Header from './Header';
 import PokemonSearch from './Search';
-import PokemonList from '../pokemon/PokemonList'
-import './App.css';
+import Paging from './Paging';
+import PokemonList from '../pokemon/PokemonList';
+// import './App.css';
 
 
 class App extends Component {
+
+  state = {
+    pokemon: []
+  }
   
   render() {
-    const { pokemon } = this.state
+    const { pokemon } = this.state;
 
     return (
       <div className="App">

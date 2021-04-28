@@ -1,31 +1,30 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 export default class PokemonSearch extends Component {
     state = {
-      nameFilter: '',
-      sortField: '',
-      typeFilter: '',
+      search: '',
     }
 
-    handleNameChange = ({ target }) => {
-      this.setState({ nameFilter: target.value });
+    handleSearchChange = ({ target }) => {
+      this.setState({ search: target.value });
     }
 
     handleSubmit = (e) => {
       e.preventDefault();
-      this.props.onSearch(this.state);
+    //   this.props.onSearch(this.state);
+        //taking in the properties of the filters we had
     }
 
     render() {
-      const { nameFilter } = this.state;
+      const { search } = this.state;
 
       return (
-        <form className="PokemonSearch" onSubmit={this.handleSubmit}>
+        <form className="Search" onSubmit={this.handleSubmit}>
 
           <input
-            name="nameFilter"
-            value={nameFilter}
-            onChange={this.handleNameChange}
+            name="search"
+            value={search}
+            onChange={this.handleSearchChange}
           />
 
           <button>Search</button>
@@ -33,5 +32,5 @@ export default class PokemonSearch extends Component {
         </form>
       );
     }
-    
+
 }
