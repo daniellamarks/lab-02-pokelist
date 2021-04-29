@@ -31,6 +31,14 @@ class App extends Component {
     console.log(response.body.results);
     this.setState({ pokemon: response.body.results });
   }
+  //we make a method because there is repetitive code
+  //Is search an argument or a parameter here?
+  async fetchPokemon(search) {
+    const response = await request
+      .get(POKEMON_API_URL)
+      .query({ pokemon: search });
+    this.setState({ pokemon: response.body.results });
+  }
 
     //gets passed whatever the search term is
 
@@ -38,12 +46,13 @@ class App extends Component {
     //THIS FUNCTION'S PURPOSE IS LIFE IS WHEN YOU CALL IT IT GETS A SEARCH PROPERTY OFF OF OBJECT ((WHAT OBJECT, WHAT IS SEARCH A PROPERTY OF?)) AND LOGS IT. This is the credit card to be handed to the child. 
     //async goes in front of the function, not in front of this = 
    handleSearch = async ({ search }) => {
+     this.fetchPokemon(search);
      console.log(search);
+     /* this was repetitive code ;
      const response = await request.get(POKEMON_API_URL)
        .query({ pokemon: search });
 
-     this.setState({ pokemon: response.body.results });
-
+     this.setState({ pokemon: response.body.results });*/
    }
 
    render() {
