@@ -45,11 +45,10 @@ export default class PokemonSearch extends Component {
           >
             <option value="">Sort...</option>
             <option value="name">By name</option>
-            <option value="type">By type</option>
-            <option value="Shape">By type</option>
-            <option value="Ability">By type</option>
-
-
+            <option value="asc">ascending</option>
+            <option value="desc">descending</option>
+            {/* <option value="abiity_1">Ability</option> */}
+           
           </select>
 
           <button>🔎</button>

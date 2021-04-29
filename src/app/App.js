@@ -8,12 +8,14 @@ import request from 'superagent';
 
 import './App.scss';
 
-const POKEMON_API_URL = 'https://pokedex-alchemy.herokuapp.com/api/pokedex';
+const POKEMON_API_URL = `https://pokedex-alchemy.herokuapp.com/api/pokedex`;
 
 class App extends Component {
 
   state = {
-    pokemon: []
+    pokemon: [],
+    search: '',
+    sortField: ''
   }
   
   //this means react is going to call this method on our class when our component is all up and running in the dom. This is where we are going to hook into calling our api.  ON the page load we want to get some initial data. 
@@ -22,7 +24,6 @@ class App extends Component {
   componentDidMount() {
     console.log('app in dom');
     this.fetchPokemon();
-
     /*const response = await request.get(POKEMON_API_URL);
     //data is always on the body or body.results
     //data comes in on the body PROPERTY of the response. 
@@ -33,10 +34,17 @@ class App extends Component {
   //we make a method because there is repetitive code
   //Is search an argument or a parameter here?
 
-  async fetchPokemon(search) {
+  async fetchPokemon() {
+    const { search, sortField } = this.state;
+    console.log(this.state);
+
     const response = await request
       .get(POKEMON_API_URL)
-      .query({ pokemon: search });
+      .query({ pokemon: search })
+      .query({ sort: 'pokemon' })
+      //direction is an add on
+      .query({ direction: sortField });
+    console.log(response.body.results);
     this.setState({ pokemon: response.body.results });
   }
 
@@ -46,38 +54,52 @@ class App extends Component {
     //THIS FUNCTION'S PURPOSE IS LIFE IS WHEN YOU CALL IT IT GETS A SEARCH PROPERTY OFF OF OBJECT ((WHAT OBJECT, WHAT IS SEARCH A PROPERTY OF?)) AND LOGS IT. This is the credit card to be handed to the child. 
     //async goes in front of the function, not in front of this = 
 
-   handleSearch = ({ search }) => {
-     this.fetchPokemon(search);
-     console.log(search);
+      
+    handleSearch = ({ search, sortField }) => {
+      console.log(search, sortField);
+
+      this.setState(
+        { 
+          search: search, 
+          sortField: sortField },
+        () => this.fetchPokemon()
+      ); 
+
+
+    }
+    //  this.fetchPokemon(search);
+    //  console.log(search);
      /* this was repetitive code ;
      const response = await request.get(POKEMON_API_URL)
        .query({ pokemon: search });
 
      this.setState({ pokemon: response.body.results });*/
-   }
 
-   render() {
-     const { pokemon } = this.state;
+    render() {
+      const { pokemon } = this.state;
 
-     return (
-       <div className="App">
+      return (
+        <div className="App">
   
-         <Header/>
+          <Header/>
 
-         <section className="search-options">
-           <PokemonSearch onSearch={this.handleSearch}/>
-           {/* <Paging/> */}
-         </section> 
+          <section className="search-options">
+            <PokemonSearch 
+              onSearch={this.handleSearch}
+              // sort={this.handleSearch}
+            />
+            {/* <Paging/> */}
+          </section> 
       
-         <main>
-           <PokemonList pokemon={pokemon}/>
-         </main> 
+          <main>
+            <PokemonList pokemon={pokemon}/>
+          </main> 
 
-         <Footer/>
+          <Footer/>
 
-       </div>
-     );
-   }
+        </div>
+      );
+    }
 
 }
 
