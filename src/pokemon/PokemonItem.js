@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './PokemonItem.scss';
 
 class PokemonItem extends Component {
 
@@ -9,12 +10,12 @@ class PokemonItem extends Component {
     return (
       <li className="PokemonItem">
         <h2>{pokemon.pokemon}</h2>
-        <img 
+        <img className="PokemonImage"
           src={pokemon.url_image}
           alt={pokemon.pokemon}
         />
-        <p>Attack: {pokemon.special_attack}</p>
-        <p>Defense: {pokemon.special_defense}</p>
+        <p className="Attack">Attack: {pokemon.special_attack}</p>
+        <p className="Defense">Defense: {pokemon.special_defense}</p>
 
       </li>
 

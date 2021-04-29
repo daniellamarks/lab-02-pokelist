@@ -1,0 +1,32 @@
+
+.Search {
+    flex-grow: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    input {
+      width: 200px;
+      height: 3rem;
+      outline: 0;
+      flex-grow: 2;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      border-bottom: 1px solid black;
+      font-family: "pokemon";
+      font-size: 2rem;
+      padding: 1rem;
+    }
+    
+    button {
+      height: 36px;
+      width: 36px;
+      cursor: pointer;
+      border: 0px;
+      background: transparent;
+      font-size: 2rem;
+      
+    }
+  
+  }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PokemonItem from './PokemonItem';
+import './PokemonList.scss';
 
 class PokemonList extends Component {
 
@@ -11,7 +12,7 @@ class PokemonList extends Component {
       <ul className="PokemonList">
         {pokemon.map(eachPokemon => {
           return <PokemonItem key={eachPokemon._id} pokemon={eachPokemon}/>;
-        })};
+        })}
         
    
       </ul>

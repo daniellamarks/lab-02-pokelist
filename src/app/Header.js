@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Header.scss';
 
 class Header extends Component {
 
@@ -6,11 +7,11 @@ class Header extends Component {
     return (
       <header className="Header">
 
-        <img
+        {/* <img
           className="logo"
-          alt="cherry blossom tree logo"
-          src="cherry-blossom-tree.png"
-        />
+          // alt="cherry blossom tree logo"
+          // src="xerneas.png"
+        /> */}
 
         <h1>Pokemon</h1>
 

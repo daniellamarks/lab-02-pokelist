@@ -6,7 +6,7 @@ import PokemonSearch from './Search';
 import PokemonList from '../pokemon/PokemonList';
 import request from 'superagent';
 
-// import './App.css';
+import './App.scss';
 
 const POKEMON_API_URL = 'https://pokedex-alchemy.herokuapp.com/api/pokedex';
 
@@ -46,7 +46,7 @@ class App extends Component {
     //THIS FUNCTION'S PURPOSE IS LIFE IS WHEN YOU CALL IT IT GETS A SEARCH PROPERTY OFF OF OBJECT ((WHAT OBJECT, WHAT IS SEARCH A PROPERTY OF?)) AND LOGS IT. This is the credit card to be handed to the child. 
     //async goes in front of the function, not in front of this = 
 
-   handleSearch = async ({ search }) => {
+   handleSearch = ({ search }) => {
      this.fetchPokemon(search);
      console.log(search);
      /* this was repetitive code ;
