@@ -4,13 +4,17 @@ class PokemonItem extends Component {
 
   render() {
 
+    const pokemon = this.props.pokemon;
+
     return (
-      <li className="PokemonList">
-        <h2>Pikachu</h2>
+      <li className="PokemonItem">
+        <h2>{pokemon.pokemon}</h2>
         <img 
-          src="pikachu.png"
-          alt="pickachu"
+          src={pokemon.url_image}
+          alt={pokemon.pokemon}
         />
+        <p>Attack: {pokemon.special_attack}</p>
+        <p>Defense: {pokemon.special_defense}</p>
 
       </li>
 

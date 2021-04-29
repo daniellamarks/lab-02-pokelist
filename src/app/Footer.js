@@ -4,7 +4,7 @@ class Footer extends Component {
 
   render() {
     return (
-      <footer classname="Footer">
+      <footer className="Footer">
                 &copy; Pokemon
       </footer>
     );
