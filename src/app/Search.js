@@ -44,6 +44,7 @@ export default class PokemonSearch extends Component {
           />
 
           <select
+            className="dropdown"
             name="sortField"
             value={sortField}
             onChange={this.handleSortField}
@@ -56,6 +57,7 @@ export default class PokemonSearch extends Component {
           </select>
 
           <select
+            className="dropdown"
             name="filterField"
             value={filterField}
             onChange={this.handleFilterField}
@@ -65,7 +67,7 @@ export default class PokemonSearch extends Component {
            
           </select>
 
-          <button>🔎</button>
+          <button>（╯°□°）╯︵◓ </button>
 
         </form>
       );

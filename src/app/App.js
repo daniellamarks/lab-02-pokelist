@@ -5,6 +5,7 @@ import PokemonSearch from './Search';
 // import Paging from './Paging';
 import PokemonList from '../pokemon/PokemonList';
 import request from 'superagent';
+import Paging from './Paging';
 
 import './App.scss';
 
@@ -17,6 +18,7 @@ class App extends Component {
     search: '',
     sortField: '',
     // filterField: '',
+    page: 1,
   }
   
   //this means react is going to call this method on our class when our component is all up and running in the dom. This is where we are going to hook into calling our api.  ON the page load we want to get some initial data. 
@@ -39,8 +41,10 @@ class App extends Component {
     const { 
       search, 
       sortField, 
+      page
       // filterField 
     } = this.state;
+
     console.log(this.state);
 
     const response = await request
@@ -54,7 +58,8 @@ class App extends Component {
       })
       //direction is an add on
       // .query({ sort: filterField })
-      .query({ direction: sortField });
+      .query({ direction: sortField })
+      .query({ page: page });
     console.log(response.body.results);
     this.setState({ pokemon: response.body.results });
   }
@@ -77,9 +82,23 @@ class App extends Component {
         },
         () => this.fetchPokemon()
       ); 
-
-
     }
+
+    //two parameters, first is provide state update second is callback function for what you want tot do when then state is updated. 
+    handlePrevPage = () => {
+      console.log('prev page');
+      this.setState(
+        { page: Math.max(this.state.page - 1, 1) },
+        () => this.fetchPokemon()
+      );};
+
+    handleNextPage = () => {
+      console.log('next page');
+      this.setState(
+        { page: this.state.page + 1 },
+        () => this.fetchPokemon()
+      );};
+
     //  this.fetchPokemon(search);
     //  console.log(search);
      /* this was repetitive code ;
@@ -89,7 +108,7 @@ class App extends Component {
      this.setState({ pokemon: response.body.results });*/
 
     render() {
-      const { pokemon } = this.state;
+      const { pokemon, page } = this.state;
 
       return (
         <div className="App">
@@ -101,6 +120,10 @@ class App extends Component {
               onSearch={this.handleSearch}
               // sort={this.handleSearch}
             />
+            <Paging 
+              page={page} 
+              onPrev={this.handlePrevPage} 
+              onNext={this.handleNextPage}/>
             {/* <Paging/> */}
           </section> 
       
