@@ -32,7 +32,7 @@ export default class PokemonSearch extends Component {
     }
 
     render() {
-      const { search, sortField, filterField } = this.state;
+      const { search, sortField } = this.state;
 
       return (
         <form className="Search" onSubmit={this.handleSubmit}>
