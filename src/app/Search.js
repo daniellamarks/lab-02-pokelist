@@ -56,7 +56,7 @@ export default class PokemonSearch extends Component {
            
           </select>
 
-          <select
+          {/* <select
             className="dropdown"
             name="filterField"
             value={filterField}
@@ -65,7 +65,7 @@ export default class PokemonSearch extends Component {
             <option value="">Filter...</option>
             <option value="defence">Defence</option>
            
-          </select>
+          </select> */}
 
           <button>（╯°□°）╯︵◓ </button>
 

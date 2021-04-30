@@ -1,11 +1,11 @@
 .PokemonItem {
     font-family: "pokemon";
     list-style: none;
-    background: rgb(240,76,14);
-    background: linear-gradient(0deg, rgba(240,76,14,1) 0%, rgba(217,46,142,1) 100%);
     color: white;
+    // background: rgb(234,235,240);
+    background: rgb(4,36,31);
+    border: 5px solid yellow;
     border-radius: 5px;
-    border: 1px solid darkgray;
     padding: 10px;
     padding-bottom: 15px;
     
