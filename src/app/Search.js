@@ -32,7 +32,7 @@ export default class PokemonSearch extends Component {
     }
 
     render() {
-      const { search, sortField } = this.state;
+      const { search, sortField, filterField } = this.state;
 
       return (
         <form className="Search" onSubmit={this.handleSubmit}>
@@ -52,20 +52,22 @@ export default class PokemonSearch extends Component {
             <option value="">Sort...</option>
             <option value="asc">A-Z</option>
             <option value="desc">Z-A</option>
-            {/* <option value="defense">Defense</option> */}
+            <option value="defense">Defence</option>
            
           </select>
 
-          {/* <select
+          <select
             className="dropdown"
             name="filterField"
             value={filterField}
             onChange={this.handleFilterField}
           >
-            <option value="">Filter...</option>
-            <option value="defence">Defence</option>
+            <option value="">Type:</option>
+            <option value="bug">bug</option>
+            <option value="normal">normal</option>
+            <option value="fire">fire</option>
            
-          </select> */}
+          </select>
 
           <button>（╯°□°）╯︵◓ </button>
 
