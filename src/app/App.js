@@ -11,11 +11,12 @@ import './App.scss';
 const POKEMON_API_URL = `https://pokedex-alchemy.herokuapp.com/api/pokedex`;
 
 class App extends Component {
-
+//state is an object that stores properties
   state = {
     pokemon: [],
     search: '',
-    sortField: ''
+    sortField: '',
+    // filterField: '',
   }
   
   //this means react is going to call this method on our class when our component is all up and running in the dom. This is where we are going to hook into calling our api.  ON the page load we want to get some initial data. 
@@ -35,14 +36,24 @@ class App extends Component {
   //Is search an argument or a parameter here?
 
   async fetchPokemon() {
-    const { search, sortField } = this.state;
+    const { 
+      search, 
+      sortField, 
+      // filterField 
+    } = this.state;
     console.log(this.state);
 
     const response = await request
       .get(POKEMON_API_URL)
-      .query({ pokemon: search })
-      .query({ sort: 'pokemon' })
+      .query({ 
+        pokemon: search,
+        // defence: filterField,
+      })
+      .query({ 
+        sort: 'pokemon',
+      })
       //direction is an add on
+      // .query({ sort: filterField })
       .query({ direction: sortField });
     console.log(response.body.results);
     this.setState({ pokemon: response.body.results });
@@ -61,7 +72,9 @@ class App extends Component {
       this.setState(
         { 
           search: search, 
-          sortField: sortField },
+          sortField: sortField,
+          // filterField: filterField
+        },
         () => this.fetchPokemon()
       ); 
 

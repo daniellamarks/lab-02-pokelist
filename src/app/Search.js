@@ -7,6 +7,7 @@ export default class PokemonSearch extends Component {
     state = {
       search: '',
       sortField: '',
+      filterField: '',
     }
     //this handling is so that this can keep up with whatever is in the box
     handleSearchChange = ({ target }) => {
@@ -15,6 +16,10 @@ export default class PokemonSearch extends Component {
 
     handleSortField = ({ target }) => {
       this.setState({ sortField: target.value });
+    }
+ 
+    handleFilterField = ({ target }) => {
+      this.setState({ filterField: target.value });
     }
 
     handleSubmit = (e) => {
@@ -27,7 +32,7 @@ export default class PokemonSearch extends Component {
     }
 
     render() {
-      const { search, sortField } = this.state;
+      const { search, sortField, filterField } = this.state;
 
       return (
         <form className="Search" onSubmit={this.handleSubmit}>
@@ -44,10 +49,19 @@ export default class PokemonSearch extends Component {
             onChange={this.handleSortField}
           >
             <option value="">Sort...</option>
-            <option value="name">By name</option>
-            <option value="asc">ascending</option>
-            <option value="desc">descending</option>
-            {/* <option value="abiity_1">Ability</option> */}
+            <option value="asc">A-Z</option>
+            <option value="desc">Z-A</option>
+            {/* <option value="defense">Defense</option> */}
+           
+          </select>
+
+          <select
+            name="filterField"
+            value={filterField}
+            onChange={this.handleFilterField}
+          >
+            <option value="">Filter...</option>
+            <option value="defence">Defence</option>
            
           </select>
 
