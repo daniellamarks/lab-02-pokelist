@@ -16,8 +16,8 @@ class App extends Component {
   state = {
     pokemon: [],
     search: '',
-    sortField: '',
-    // filterField: '',
+    sortField: undefined,
+    filterField: undefined,
     page: 1,
   }
   
@@ -27,11 +27,6 @@ class App extends Component {
   componentDidMount() {
     console.log('app in dom');
     this.fetchPokemon();
-    /*const response = await request.get(POKEMON_API_URL);
-    //data is always on the body or body.results
-    //data comes in on the body PROPERTY of the response. 
-    console.log(response.body.results);
-    this.setState({ pokemon: response.body.results });*/
   }
 
   //we make a method because there is repetitive code
@@ -41,44 +36,35 @@ class App extends Component {
     const { 
       search, 
       sortField, 
-      page
-      // filterField 
+      page,
+      filterField 
     } = this.state;
 
+    //if we don't have anything selected it will stay undefined
+    const response = await request.get(POKEMON_API_URL)
+      .query({ pokemon: search })
+      .query({ sort: 'pokemon' || undefined })
+      .query({ direction: sortField || undefined })
+      .query({ type: filterField || undefined })
+      .query({ page: page });
+    //data is always on the body or body.results
+    this.setState({ pokemon: response.body.results });
+    console.log(response.body.results);
     console.log(this.state);
 
-    const response = await request
-      .get(POKEMON_API_URL)
-      .query({ 
-        pokemon: search,
-        // defence: filterField,
-      })
-      .query({ 
-        sort: 'pokemon',
-      })
-      //direction is an add on
-      // .query({ sort: filterField })
-      .query({ direction: sortField })
-      .query({ page: page });
-    console.log(response.body.results);
-    this.setState({ pokemon: response.body.results });
   }
 
     //gets passed whatever the search term is
-
-    //destructure, not a bad idea in a search option because if you have a string and want to add something you either have to break the string to make an object or add more parameters
     //THIS FUNCTION'S PURPOSE IS LIFE IS WHEN YOU CALL IT IT GETS A SEARCH PROPERTY OFF OF OBJECT ((WHAT OBJECT, WHAT IS SEARCH A PROPERTY OF?)) AND LOGS IT. This is the credit card to be handed to the child. 
-    //async goes in front of the function, not in front of this = 
-
       
-    handleSearch = ({ search, sortField }) => {
+    handleSearch = ({ search, sortField, filterField }) => {
       console.log(search, sortField);
 
       this.setState(
         { 
           search: search, 
           sortField: sortField,
-          // filterField: filterField
+          filterField: filterField
         },
         () => this.fetchPokemon()
       ); 
@@ -118,13 +104,11 @@ class App extends Component {
           <section className="search-options">
             <PokemonSearch 
               onSearch={this.handleSearch}
-              // sort={this.handleSearch}
             />
             <Paging 
               page={page} 
               onPrev={this.handlePrevPage} 
               onNext={this.handleNextPage}/>
-            {/* <Paging/> */}
           </section> 
       
           <main>
