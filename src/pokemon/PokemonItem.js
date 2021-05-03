@@ -14,8 +14,8 @@ class PokemonItem extends Component {
           src={pokemon.url_image}
           alt={pokemon.pokemon}
         />
-        <p className="Attack">Attack: {pokemon.special_attack}</p>
-        <p className="Defense">Defense: {pokemon.special_defense}</p>
+        <p className="Attack">Attack: {pokemon.attack}</p>
+        <p className="Defense">Defense: {pokemon.defense}</p>
 
       </li>
 

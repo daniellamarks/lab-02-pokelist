@@ -17,6 +17,7 @@ class App extends Component {
     pokemon: [],
     search: '',
     sortField: undefined,
+    directionField: undefined,
     filterField: undefined,
     page: 1,
   }
@@ -30,12 +31,11 @@ class App extends Component {
   }
 
   //we make a method because there is repetitive code
-  //Is search an argument or a parameter here?
-
   async fetchPokemon() {
     const { 
       search, 
       sortField, 
+      directionField,
       page,
       filterField 
     } = this.state;
@@ -43,27 +43,27 @@ class App extends Component {
     //if we don't have anything selected it will stay undefined
     const response = await request.get(POKEMON_API_URL)
       .query({ pokemon: search })
-      .query({ sort: 'pokemon' || undefined })
-      .query({ direction: sortField || undefined })
+      .query({ sort: sortField || undefined })
+      .query({ direction: directionField || undefined })
       .query({ type: filterField || undefined })
       .query({ page: page });
     //data is always on the body or body.results
     this.setState({ pokemon: response.body.results });
-    console.log(response.body.results);
-    console.log(this.state);
-
+    // console.log(response.body.results);
+    // console.log(this.state);
   }
 
     //gets passed whatever the search term is
     //THIS FUNCTION'S PURPOSE IS LIFE IS WHEN YOU CALL IT IT GETS A SEARCH PROPERTY OFF OF OBJECT ((WHAT OBJECT, WHAT IS SEARCH A PROPERTY OF?)) AND LOGS IT. This is the credit card to be handed to the child. 
       
-    handleSearch = ({ search, sortField, filterField }) => {
+    handleSearch = ({ search, sortField, directionField, filterField }) => {
       console.log(search, sortField);
 
       this.setState(
         { 
           search: search, 
           sortField: sortField,
+          directionField: directionField,
           filterField: filterField
         },
         () => this.fetchPokemon()
@@ -85,8 +85,7 @@ class App extends Component {
         () => this.fetchPokemon()
       );};
 
-    //  this.fetchPokemon(search);
-    //  console.log(search);
+
      /* this was repetitive code ;
      const response = await request.get(POKEMON_API_URL)
        .query({ pokemon: search });
