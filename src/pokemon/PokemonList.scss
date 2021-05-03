@@ -1,0 +1,11 @@
+.PokemonList {
+    margin: 20px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 10px;
+    background: rgb(240,76,14);
+    background: linear-gradient(0deg, rgba(240,76,14,1) 0%, rgba(217,46,142,1) 100%);
+    border: 1px solid black;
+    border-radius: 20px;
+  }
